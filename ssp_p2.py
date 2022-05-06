@@ -1,9 +1,11 @@
 import time as time
-from obis-laser-cotroller import ObisLaserController
+from obis_laser_cotroller import ObisLaserController
+from vector2dLib import Vector2D
+import numpy as np
 # A library for a possible part
 
 # Create the laser controller and connect to device
-laserComp = ObisLaserController(PORT)
+laserComp = ObisLaserController(1) # Here the port is assumed to be 1 for demonstration
 laserComp.connect()
 
 # The class which handles all functions and variables related to the laser component and it's functions
@@ -27,13 +29,12 @@ class laser:
 class brushing:
     torque = 0
     rpm = 0 # TODO: Define this later
+    brushComp = brushComp()
     
     # Turns the brush component on with a given rpm(rotations per minute) and a force torque (newton meter)
     def brushOn(self, rpm, torque):  
         if self.rpm > 0 and self.torque > 0:
-            self.rpm = rpm
-            self.torque = torque
-            brushComp.on(self.rpm, self.torque)
+            self.rpm = rpm; self.torque = torque; brushComp.on(self.rpm, self.torque)
         
     # Turns the brush component off where it sets the brush variables to zero
     def brushOff(self):
@@ -43,3 +44,15 @@ class brushing:
             self.torque = 0
         
         brushComp.off(self.rpm, self.torque)
+
+class brushComp:
+    on = False
+
+    def off():
+        on = False
+        # TODO: Turn the brush component off if it's on
+
+    def on():
+        on = True
+        # TODO: Turn the brush component on if it's off
+
