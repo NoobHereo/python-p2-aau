@@ -8,12 +8,18 @@ if __name__ == "__main__":
     # create the Robot instance.
     robot = Robot()
     
-    # get the time step of the current world.
-    timestep = 64
-    maxSpeed = 6.28
-    
+
+    class Data:
+        timestep = 64
+        maxSpeed = 6.28
+        numSide = 4
+        lengthSide = 1
+        wheelRadius = 0.1
+        wheelDistance = 0.46
+
+    data = Data()
+
     #created motor instances
-    
     redLed = robot.getDevice('led')
     LeftMotor = robot.getDevice('left_motor')
     RightMotor = robot.getDevice('right_motor')
@@ -24,19 +30,15 @@ if __name__ == "__main__":
     RightMotor.setPosition(float('inf'))
     RightMotor.setVelocity(0.0)
     
-    numSide = 4
-    lengthSide = 1
+    linearVelocity = data.wheelRadius * data.maxSpeed
     
-    wheelRadius = 0.1
-    linearVelocity = wheelRadius * maxSpeed
-    
-    durationSide = lengthSide/linearVelocity
+    durationSide = data.lengthSide/linearVelocity
     
     startTime = robot.getTime()
     
-    angleOfRotation = 6.28/numSide
-    distanceBetweenWheels = 0.46
-    rateOfRotation = (2 * linearVelocity)/distanceBetweenWheels
+    angleOfRotation = 6.28/data.numSide
+
+    rateOfRotation = (2 * linearVelocity)/data.wheelDistance
     durationTurn = angleOfRotation/rateOfRotation
     
     
@@ -44,17 +46,17 @@ if __name__ == "__main__":
     rotEndTime = rotStartTime + durationTurn
     # Main loop:
     # - perform simulation steps until Webots is stopping the controller
-    while robot.step(timestep) != -1:
+    while robot.step(data.timestep) != -1:
         
         currentTime = robot.getTime()
         
-        leftSpeed = maxSpeed
-        rightSpeed = maxSpeed
+        leftSpeed = data.maxSpeed
+        rightSpeed = data.maxSpeed
         
         
         if rotStartTime < currentTime < rotEndTime:
-            leftSpeed = -maxSpeed
-            rightSpeed = maxSpeed
+            leftSpeed = -data.maxSpeed
+            rightSpeed = data.maxSpeed
             redLed.set(1)
             
         elif currentTime > rotEndTime:
@@ -64,9 +66,6 @@ if __name__ == "__main__":
 
         LeftMotor.setVelocity(leftSpeed)
         RightMotor.setVelocity(rightSpeed)
-        
-        
-    
-    
+         
     
     # Enter here exit cleanup code.
