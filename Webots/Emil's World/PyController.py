@@ -19,16 +19,19 @@ if __name__ == "__main__":
 
     data = Data()
 
-    #created motor instances
-    redLed = robot.getDevice('led')
-    LeftMotor = robot.getDevice('left_motor')
-    RightMotor = robot.getDevice('right_motor')
+    #created Robot part instances as class
+    class Parts:
+        redLed = robot.getDevice('led')
+        leftMotor = robot.getDevice('left_motor')
+        rightMotor = robot.getDevice('right_motor')
     
-    LeftMotor.setPosition(float('inf'))
-    LeftMotor.setVelocity(0.0)
+    parts = Parts()
     
-    RightMotor.setPosition(float('inf'))
-    RightMotor.setVelocity(0.0)
+    parts.leftMotor.setPosition(float('inf'))
+    parts.leftMotor.setVelocity(0.0)
+    
+    parts.rightMotor.setPosition(float('inf'))
+    parts.rightMotor.setVelocity(0.0)
     
     linearVelocity = data.wheelRadius * data.maxSpeed
     
@@ -57,15 +60,15 @@ if __name__ == "__main__":
         if rotStartTime < currentTime < rotEndTime:
             leftSpeed = -data.maxSpeed
             rightSpeed = data.maxSpeed
-            redLed.set(1)
+            parts.redLed.set(1)
             
         elif currentTime > rotEndTime:
             rotStartTime = currentTime + durationSide
             rotEndTime = rotStartTime + durationTurn
-            redLed.set(0)
+            parts.redLed.set(0)
 
-        LeftMotor.setVelocity(leftSpeed)
-        RightMotor.setVelocity(rightSpeed)
+        parts.leftMotor.setVelocity(leftSpeed)
+        parts.rightMotor.setVelocity(rightSpeed)
          
     
     # Enter here exit cleanup code.
