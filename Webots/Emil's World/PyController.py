@@ -36,8 +36,8 @@ if __name__ == "__main__":
         if rotStartTime < currentTime < rotEndTime:
             PyLib.Left()        
         elif currentTime > rotEndTime:
-            rotStartTime = currentTime + durationSide
-            rotEndTime = rotStartTime + durationTurn
+            rotStartTime = currentTime + durationSide; rotEndTime = rotStartTime + durationTurn
             parts.redLed.set(0)
 
         PyLib.Forward()
+        PyLib.Brushing()

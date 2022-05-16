@@ -12,9 +12,12 @@ class Data:
 data = Data()
 
 class Parts:
-        redLed = robot.getDevice('led')
+        # LED shows whparts is used, ie. the brush component or laser component
+        redLed = robot.getDevice('led') 
         leftMotor = robot.getDevice('left_motor')
         rightMotor = robot.getDevice('right_motor')
+        # brush = robot.getDevice('brush')
+        # laser = robot.getDevice('laser')
 
 parts = Parts()
 
@@ -25,8 +28,16 @@ class Forward:
 class Left:
     leftSpeed = -data.maxSpeed
     rightSpeed = data.maxSpeed
+    parts.redLed.set(0)
+
+class Brushing:
     parts.redLed.set(1)
+    
+class Eradicate:
+    parts.redLed.set(1)
+    
 
 class Right:
     leftSpeed = data.maxSpeed
     rightSpeed = -data.maxSpeed
+    parts.redLed.set(0)
