@@ -1,5 +1,5 @@
 # python-p2-aau
-Authors: Emil Frydenholm, Frederik Boel Borchersen, Magnus Bøgh-Larsen, Marcus Langfeldt, Mikkeline Havgaard, Nikolaj Krebs.
+Authors: **Emil Frydenholm, Frederik Boel Borchersen, Magnus Bøgh-Larsen, Marcus Langfeldt, Mikkeline Havgaard, Nikolaj Krebs**.
 
 2nd semester mini project for Struktureret System og -Produktdesign, Robotics.
 The purpose of this project is to simulate a concept for a robot that can be applied for householding tasks such as maintaining clean stone slabs
